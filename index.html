@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jazz Club & Coffee — Lima</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --cream: #f5ead6;
+    --darker: #070503;
+    --amber: #b87333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--darker);
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ══════════════════════════════
+     HEADER
+  ══════════════════════════════ */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background: linear-gradient(to bottom, rgba(7,5,3,0.96), transparent);
+  }
+
+  .logo-img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 14px rgba(201,168,76,0.45));
+  }
+  .logo-fallback {
+    font-family: 'Special Elite', cursive;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 20px rgba(201,168,76,0.5);
+    display: none;
+  }
+
+  nav a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-left: 32px;
+    opacity: 0.62;
+    transition: opacity .3s, color .3s;
+  }
+  nav a:hover { opacity: 1; color: var(--gold); }
+
+  /* ══════════════════════════════
+     BANNER
+  ══════════════════════════════ */
+  .banner {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  /* The banner image — swap banner.png in same folder */
+  .banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.58) saturate(1.15);
+  }
+
+  /* Bottom vignette */
+  .banner-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(7,5,3,0.42) 0%,
+      transparent 32%,
+      transparent 58%,
+      rgba(7,5,3,0.88) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── CABARET SPOTLIGHTS ──
+     Two independent beams that sweep across the banner.
+     Each is a narrow cone from the top, rotating as it travels.
+  */
+  .spots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  /* Beam 1 — sweeps left → right */
+  .spot1 {
+    position: absolute;
+    top: 0; left: 0;
+    width: 45%; height: 100%;
+    background: conic-gradient(
+      from 0deg at 50% 0%,
+      transparent 0deg,
+      rgba(255,220,130,0.0) 10deg,
+      rgba(255,220,130,0.30) 16deg,
+      rgba(255,210,100,0.18) 22deg,
+      transparent 32deg
+    );
+    transform-origin: top center;
+    animation: beam1 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes beam1 {
+    0%   { left: -30%;  opacity: 0;   transform: rotate(-15deg); }
+    6%   { opacity: 1; }
+    45%  { left: 90%;   opacity: 0.9; transform: rotate(10deg); }
+    55%  { left: 95%;   opacity: 0;   transform: rotate(12deg); }
+    100% { left: 95%;   opacity: 0;   transform: rotate(12deg); }
+  }
+
+  /* Beam 2 — sweeps right → left, delayed */
+  .spot2 {
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: conic-gradient(
+      from 0deg at 50% 0%,
+      transparent 0deg,
+      rgba(255,220,130,0.0) 10deg,
+      rgba(255,200,80,0.26) 17deg,
+      rgba(255,210,100,0.14) 24deg,
+      transparent 34deg
+    );
+    transform-origin: top center;
+    animation: beam2 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation-delay: 4s;
+  }
+  @keyframes beam2 {
+    0%   { right: -30%; opacity: 0;   transform: rotate(15deg); }
+    6%   { opacity: 1; }
+    45%  { right: 88%;  opacity: 0.85;transform: rotate(-10deg); }
+    55%  { right: 93%;  opacity: 0;   transform: rotate(-12deg); }
+    100% { right: 93%;  opacity: 0;   transform: rotate(-12deg); }
+  }
+
+  /* Warm ambient breathing glow behind the beams */
+  .ambient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      ellipse 65% 55% at 42% 48%,
+      rgba(201,168,76,0.09) 0%,
+      transparent 72%
+    );
+    animation: ambientBreathe 5s ease-in-out infinite alternate;
+  }
+  @keyframes ambientBreathe {
+    from { opacity: 0.35; }
+    to   { opacity: 1; }
+  }
+
+  /* Banner text */
+  .banner-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 0 24px 80px;
+  }
+  .banner-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    color: var(--cream);
+    text-shadow: 0 0 60px rgba(201,168,76,0.6), 0 2px 10px rgba(0,0,0,0.9);
+    letter-spacing: 0.04em;
+    animation: riseUp 1.3s ease both;
+  }
+  .banner-content .tagline {
+    font-size: clamp(0.72rem, 1.8vw, 1rem);
+    letter-spacing: 0.44em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 14px;
+    animation: riseUp 1.6s ease both;
+  }
+  .banner-content .sub {
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    color: rgba(245,234,214,0.45);
+    margin-top: 8px;
+    animation: riseUp 1.9s ease both;
+  }
+  @keyframes riseUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 26px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 0.66rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    animation: nudge 2.5s ease-in-out infinite;
+    z-index: 6;
+  }
+  @keyframes nudge {
+    0%,100% { transform: translateX(-50%) translateY(0);   opacity: 0.45; }
+    50%      { transform: translateX(-50%) translateY(9px); opacity: 1; }
+  }
+
+  /* ══════════════════════════════
+     WINAMP PLAYLIST BAR
+  ══════════════════════════════ */
+  .playlist-section {
+    background: #0a0705;
+    border-top: 1px solid rgba(201,168,76,0.18);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    overflow: hidden;
+  }
+  .playlist-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 24px 6px;
+    background: linear-gradient(to right, #1c1106, #0d0a07);
+  }
+  .winamp-title {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.61rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.78;
+  }
+  .eq-bars { display: flex; gap: 2px; align-items: flex-end; height: 16px; }
+  .eq-bar {
+    width: 3px; background: var(--gold); border-radius: 1px;
+    animation: eq .42s ease-in-out infinite alternate;
+  }
+  .eq-bar:nth-child(1){animation-duration:.38s;height:60%}
+  .eq-bar:nth-child(2){animation-duration:.52s;height:90%}
+  .eq-bar:nth-child(3){animation-duration:.44s;height:40%}
+  .eq-bar:nth-child(4){animation-duration:.60s;height:75%}
+  .eq-bar:nth-child(5){animation-duration:.35s;height:55%}
+  @keyframes eq {
+    from { transform: scaleY(.25); }
+    to   { transform: scaleY(1); }
+  }
+  .track-display {
+    background: #050302;
+    border: 1px solid #2a1f0a;
+    border-radius: 2px;
+    padding: 4px 12px;
+    font-family: 'Special Elite', cursive;
+    font-size: 0.68rem;
+    color: #d4a843;
+    letter-spacing: 0.05em;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-wrap {
+    overflow: hidden;
+    padding: 10px 0;
+    background: #080603;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 62s linear infinite;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 28px;
+    font-family: 'Special Elite', cursive;
+    font-size: 0.77rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .ticker-item .num { color: rgba(201,168,76,.36); font-size:.6rem; margin-right:8px; }
+  .ticker-item .sep { margin: 0 20px; color: rgba(201,168,76,.2); }
+  .ticker-item.active { color: var(--cream); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ══════════════════════════════
+     SHARED LAYOUT
+  ══════════════════════════════ */
+  .inner { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: .62rem;
+    letter-spacing: .38em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content:''; width:50px; height:1px;
+    background:var(--gold); opacity:.33;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 36px;
+    line-height: 1.25;
+  }
+  .divider {
+    width:100%; height:1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,.2), transparent);
+  }
+
+  /* ══════════════════════════════
+     MENU
+  ══════════════════════════════ */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,168,76,.08);
+    border: 1px solid rgba(201,168,76,.1);
+  }
+  .menu-cat { background: var(--darker); padding: 36px 32px; }
+  .menu-cat h3 {
+    font-family: 'Special Elite', cursive;
+    font-size: .66rem;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201,168,76,.16);
+  }
+  .mi {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  .mi-info { flex: 1; }
+  .mi-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    display: block;
+  }
+  .mi-desc {
+    font-size: .68rem;
+    color: rgba(245,234,214,.4);
+    letter-spacing: .03em;
+    margin-top: 3px;
+  }
+  .mi-dots {
+    flex:1;
+    border-bottom: 1px dotted rgba(201,168,76,.16);
+    margin: 0 8px;
+    margin-bottom: 4px;
+  }
+  .mi-price {
+    font-family: 'Special Elite', cursive;
+    font-size: .8rem;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ══════════════════════════════
+     ABOUT
+  ══════════════════════════════ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: .97rem;
+    line-height: 1.95;
+    color: rgba(245,234,214,.7);
+    margin-bottom: 20px;
+  }
+  .about-text em { color: var(--gold); font-style: italic; }
+  .about-aside {
+    border-left: 1px solid rgba(201,168,76,.16);
+    padding-left: 40px;
+  }
+  .detail { margin-bottom: 32px; }
+  .detail .lbl {
+    font-size: .62rem;
+    letter-spacing: .32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .detail p { font-size: .87rem; color: rgba(245,234,214,.76); line-height: 1.7; }
+
+  /* ══════════════════════════════
+     MAP
+  ══════════════════════════════ */
+  .map-wrap {
+    position: relative;
+    width: 100%; height: 320px;
+    overflow: hidden;
+    border-top: 1px solid rgba(201,168,76,.1);
+    border-bottom: 1px solid rgba(201,168,76,.1);
+  }
+  .map-wrap iframe {
+    width:100%; height:100%; border:none;
+    filter: grayscale(100%) invert(90%) sepia(12%) saturate(340%) hue-rotate(8deg) brightness(.6);
+  }
+  .map-pin {
+    position: absolute;
+    bottom: 18px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(7,5,3,.92);
+    border: 1px solid rgba(201,168,76,.26);
+    padding: 9px 22px;
+    font-family: 'Special Elite', cursive;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    color: var(--gold);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    border-top: 1px solid rgba(201,168,76,.08);
+    padding: 34px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    height: 34px; width: auto;
+    object-fit: contain;
+    opacity: .5;
+    filter: drop-shadow(0 0 6px rgba(201,168,76,.28));
+  }
+  footer p { font-size: .66rem; color: rgba(245,234,214,.26); letter-spacing: .14em; }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media(max-width:768px){
+    header { padding:14px 20px; }
+    nav { display:none; }
+    .inner { padding:56px 20px; }
+    .menu-grid { grid-template-columns:1fr; }
+    .about-grid { grid-template-columns:1fr; gap:40px; }
+    .about-aside { border-left:none; border-top:1px solid rgba(201,168,76,.16); padding:36px 0 0; }
+    footer { flex-direction:column; gap:16px; text-align:center; padding:28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <img src="logo.png" alt="Logo" class="logo-img"
+       onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block';">
+  <div class="logo-fallback">♪ Jazz Club</div>
+  <nav>
+    <a href="#playlist">Playlist</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#visit">Visit Us</a>
+  </nav>
+</header>
+
+<!-- ══ BANNER ══ -->
+<div class="banner">
+
+  <!-- Your banner image — place banner.png in same folder -->
+  <img src="banner.png" alt="Jazz Club" class="banner-img"
+       onerror="this.src='1774623328268_image.png';">
+
+  <!-- Ambient warm glow -->
+  <div class="ambient"></div>
+
+  <!-- Two sweeping cabaret beams -->
+  <div class="spots">
+    <div class="spot1"></div>
+    <div class="spot2"></div>
+  </div>
+
+  <!-- Bottom dark fade -->
+  <div class="banner-vignette"></div>
+
+  <!-- Text -->
+  <div class="banner-content">
+    <h1>Bienvenidos</h1>
+    <p class="tagline">Jazz Club &amp; Specialty Coffee</p>
+    <p class="sub">Surco · Lima · Peru</p>
+  </div>
+
+  <div class="scroll-hint">↓ &nbsp; come on in &nbsp; ↓</div>
+</div>
+
+<!-- ══ PLAYLIST ══ -->
+<div id="playlist" class="playlist-section">
+  <div class="playlist-header">
+    <div class="eq-bars">
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+    </div>
+    <span class="winamp-title">Now Playing · Jazz Classics</span>
+    <div class="track-display" id="nowPlaying">♪ &nbsp; Autumn Leaves — Miles Davis</div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+</div>
+
+<!-- ══ MENU ══ -->
+<div id="menu">
+  <div class="inner">
+    <div class="section-label">What we serve</div>
+    <h2>The Menu</h2>
+    <div class="menu-grid">
+
+      <div class="menu-cat">
+        <h3>Coffee</h3>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Espresso</span><span class="mi-desc">Single shot, dark roast</span></div><div class="mi-dots"></div><span class="mi-price">S/ 7</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Double Espresso</span><span class="mi-desc">Two shots, bold &amp; rich</span></div><div class="mi-dots"></div><span class="mi-price">S/ 10</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Black Coffee</span><span class="mi-desc">Classic filtered brew</span></div><div class="mi-dots"></div><span class="mi-price">S/ 8</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Café con Leche</span><span class="mi-desc">Espresso &amp; warm steamed milk</span></div><div class="mi-dots"></div><span class="mi-price">S/ 11</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Cappuccino</span><span class="mi-desc">Velvety foam, Italian style</span></div><div class="mi-dots"></div><span class="mi-price">S/ 12</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Matcha</span><span class="mi-desc">Ceremonial grade, oat or whole milk</span></div><div class="mi-dots"></div><span class="mi-price">S/ 13</span></div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>Tea &amp; Infusions</h3>
+        <div class="mi"><div class="mi-info"><span class="mi-name">The Wardrobe</span><span class="mi-desc">Earl Grey, bergamot, smoked honey</span></div><div class="mi-dots"></div><span class="mi-price">S/ 12</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Poets' Tea</span><span class="mi-desc">Jasmine, white peony, silence</span></div><div class="mi-dots"></div><span class="mi-price">S/ 11</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Lovers' Tea</span><span class="mi-desc">Rose, hibiscus, cardamom</span></div><div class="mi-dots"></div><span class="mi-price">S/ 11</span></div>
+        <div class="mi"><div class="mi-info"><span class="mi-name">Oriental Tea</span><span class="mi-desc">Oolong, ginger, star anise</span></div><div class="mi-dots"></div><span class="mi-price">S/ 12</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ ABOUT ══ -->
+<div id="about">
+  <div class="inner">
+    <div class="section-label">Our story</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Where the trumpet breathes<br>and the coffee sings</h2>
+        <p>A small, unhurried place in Surco. We believe the best conversations happen over an honest espresso, in a room where someone is playing <em>Autumn Leaves</em> just loud enough to feel it in your chest.</p>
+        <p>We are not a chain. We are not a concept. We are two friends, a secondhand record player, and an obsession with good beans. Come as you are.</p>
+      </div>
+      <div class="about-aside">
+        <div class="detail">
+          <div class="lbl">Hours</div>
+          <p>Mon – Fri &nbsp; 8am – midnight<br>Sat – Sun &nbsp; 9am – 2am</p>
+        </div>
+        <div class="detail">
+          <div class="lbl">Live Sessions</div>
+          <p>Thursday, Friday &amp; Saturday<br>from 8pm · no cover charge</p>
+        </div>
+        <div class="detail">
+          <div class="lbl">Reservations</div>
+          <p>hello@jazzlima.pe<br>+51 1 987 654 321</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ MAP ══ -->
+<div id="visit">
+  <div class="inner" style="padding-bottom:24px;">
+    <div class="section-label">Find us</div>
+    <h2>Surco, Lima</h2>
+    <p style="color:rgba(245,234,214,.48);font-size:.87rem;letter-spacing:.06em;">
+      Calle Las Camelias 742, Santiago de Surco, Lima 33, Peru
+    </p>
+  </div>
+  <div class="map-wrap">
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-77.0200%2C-12.1550%2C-77.0000%2C-12.1350&layer=mapnik&marker=-12.1450%2C-77.0100"
+      allowfullscreen loading="lazy"
+      title="Jazz Club location">
+    </iframe>
+    <div class="map-pin">♪ &nbsp; Calle Las Camelias 742 · Surco · Lima &nbsp; ♪</div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <img src="logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none';">
+  <p>© 2025 Jazz Club &amp; Coffee · Lima, Peru · All rights reserved</p>
+  <p style="color:rgba(245,234,214,.14);">Made with love &amp; strong coffee</p>
+</footer>
+
+<script>
+  const tracks = [
+    {n:"01",t:"Autumn Leaves",a:"Miles Davis"},
+    {n:"02",t:"Take Five",a:"Dave Brubeck"},
+    {n:"03",t:"So What",a:"Miles Davis"},
+    {n:"04",t:"Round Midnight",a:"Thelonious Monk"},
+    {n:"05",t:"My Funny Valentine",a:"Chet Baker"},
+    {n:"06",t:"Misty",a:"Erroll Garner"},
+    {n:"07",t:"Summertime",a:"Miles Davis"},
+    {n:"08",t:"All Blues",a:"Miles Davis"},
+    {n:"09",t:"A Night in Tunisia",a:"Dizzy Gillespie"},
+    {n:"10",t:"Blue in Green",a:"Bill Evans"},
+    {n:"11",t:"Fly Me to the Moon",a:"Frank Sinatra"},
+    {n:"12",t:"Stella by Starlight",a:"Bill Evans"},
+    {n:"13",t:"Body and Soul",a:"Coleman Hawkins"},
+    {n:"14",t:"Straight, No Chaser",a:"Thelonious Monk"},
+    {n:"15",t:"There Will Never Be Another You",a:"Chet Baker"},
+    {n:"16",t:"Impressions",a:"John Coltrane"},
+    {n:"17",t:"Naima",a:"John Coltrane"},
+    {n:"18",t:"All of Me",a:"Art Tatum"},
+    {n:"19",t:"Caravan",a:"Duke Ellington"},
+    {n:"20",t:"What a Wonderful World",a:"Louis Armstrong"},
+  ];
+
+  // Build seamless ticker
+  const ticker = document.getElementById('ticker');
+  ticker.innerHTML = [...tracks, ...tracks].map((tr, i) =>
+    `<span class="ticker-item${i===0?' active':''}">
+      <span class="num">${tr.n}</span>${tr.t} — ${tr.a}
+      <span class="sep">·</span>
+    </span>`
+  ).join('');
+
+  // Rotate Now Playing display
+  let cur = 0;
+  const display = document.getElementById('nowPlaying');
+  setInterval(() => {
+    cur = (cur + 1) % tracks.length;
+    display.textContent = `♪   ${tracks[cur].t} — ${tracks[cur].a}`;
+  }, 6000);
+</script>
+</body>
+</html>
