@@ -534,4 +534,10 @@
     <div class="module-card"><div class="module-header"><div class="module-num">MODULE 13</div><div class="module-title">Mise en situation professionnelle</div></div><div class="module-list"><ul><li>13.1 – Service en continu en take-away</li><li>13.2 – Calibration machine et moulin en conditions réelles</li><li>13.3 – Réalisation d'un menu complet (espresso, matcha, infusion armoise, latte art)</li><li>13.4 – Évaluation et correction par le formateur</li></ul></div></div>
   </div>
   <div style="margin-top: 52px; text-align: center; font-size: 0.8rem; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 32px;">
-    <span style="background: rgba(201,168,76,0.08); padding: 6px 18px; border-radi
+    <span style="background: rgba(201,168,76,0.08); padding: 6px 18px; border-radius: 60px;">🎓 Formation intensive – certification interne – focus take-away Lima</span>
+  </div>
+</div>
+
+<!-- Mini menu rapide + about -->
+<div id="menu-lia" class="menu-mini">
+  <a href="#">☕ Espres
