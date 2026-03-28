@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+       <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Jazz Club & Coffee | Formation Barista 2026 – Lima</title>
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500&family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -25,11 +25,12 @@
     /* palette jazz */
     :root {
       --gold: #c9a84c;
+      --gold-light: #e0bc6a;
       --cream: #f5ead6;
       --dark-bg: #070503;
       --dark-card: #0f0b08;
-      --border-gold-light: rgba(201, 168, 76, 0.2);
-      --shadow-gold: rgba(201, 168, 76, 0.25);
+      --border-gold-light: rgba(201, 168, 76, 0.25);
+      --shadow-gold: rgba(201, 168, 76, 0.2);
     }
 
     /* header fixe */
@@ -45,6 +46,7 @@
       padding: 14px 48px;
       background: linear-gradient(to bottom, rgba(7,5,3,0.96), transparent);
       backdrop-filter: blur(2px);
+      pointer-events: auto;
     }
 
     .logo-img {
@@ -63,6 +65,7 @@
       margin-left: 32px;
       opacity: 0.7;
       transition: 0.25s;
+      font-weight: 400;
     }
 
     nav a:hover {
@@ -70,7 +73,7 @@
       color: var(--gold);
     }
 
-    /* BANNER JAZZ (avec spotlights) */
+    /* BANNER JAZZ */
     .banner {
       position: relative;
       width: 100%;
@@ -87,7 +90,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.58) saturate(1.1);
+      filter: brightness(0.55) saturate(1.05);
     }
 
     .spots {
@@ -162,7 +165,7 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 0 24px 80px;
+      padding: 0 24px 100px;
     }
 
     .banner-content h1 {
@@ -171,6 +174,7 @@
       font-size: clamp(3rem, 8vw, 6.5rem);
       color: var(--cream);
       text-shadow: 0 0 60px rgba(201,168,76,0.6);
+      font-weight: 700;
     }
 
     .tagline {
@@ -179,6 +183,7 @@
       color: var(--gold);
       text-transform: uppercase;
       margin-top: 14px;
+      font-weight: 400;
     }
 
     .scroll-hint {
@@ -284,16 +289,16 @@
       to { transform: translateX(-50%); }
     }
 
-    /* conteneur formation */
+    /* SECTION FORMATION - STRUCTURE LISIBLE */
     .formation-section {
-      max-width: 1280px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 60px 48px 80px;
+      padding: 70px 48px 80px;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
 
     .section-header .badge {
@@ -305,69 +310,74 @@
       display: inline-block;
       padding: 6px 20px;
       border-radius: 40px;
+      font-weight: 500;
     }
 
     .section-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 400;
-      margin-top: 16px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 500;
+      margin-top: 20px;
       color: var(--cream);
     }
 
     .section-header p {
-      color: rgba(245,234,214,0.65);
-      max-width: 640px;
-      margin: 12px auto 0;
+      color: rgba(245,234,214,0.7);
+      max-width: 700px;
+      margin: 16px auto 0;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    /* grille modules */
+    /* grille modules - amélioration lisibilité */
     .modules-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 28px;
-      margin-top: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
     }
 
     .module-card {
-      background: var(--dark-card);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 24px;
+      background: #0f0b08;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 28px;
       transition: all 0.3s ease;
       overflow: hidden;
       backdrop-filter: blur(2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     .module-card:hover {
-      border-color: rgba(201,168,76,0.6);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.5);
+      border-color: rgba(201,168,76,0.7);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6);
     }
 
     .module-header {
-      background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(0,0,0,0.3));
-      padding: 18px 22px;
-      border-bottom: 1px solid rgba(201,168,76,0.2);
+      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(0,0,0,0.4));
+      padding: 22px 26px;
+      border-bottom: 1px solid rgba(201,168,76,0.25);
     }
 
     .module-num {
       font-family: 'Special Elite', cursive;
       font-size: 0.7rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
+      color: var(--gold-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
     }
 
     .module-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       font-weight: 600;
-      margin-top: 8px;
+      margin-top: 10px;
       color: var(--cream);
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .module-list {
-      padding: 18px 22px 24px;
+      padding: 22px 26px 28px;
     }
 
     .module-list ul {
@@ -375,12 +385,13 @@
     }
 
     .module-list li {
-      font-size: 0.86rem;
-      margin-bottom: 12px;
-      padding-left: 22px;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+      padding-left: 24px;
       position: relative;
-      color: rgba(245,234,214,0.8);
-      line-height: 1.4;
+      color: rgba(245,234,214,0.85);
+      line-height: 1.45;
+      font-weight: 300;
     }
 
     .module-list li::before {
@@ -389,10 +400,117 @@
       left: 0;
       color: var(--gold);
       font-size: 0.75rem;
-      opacity: 0.7;
+      opacity: 0.8;
+      top: 0;
     }
 
-    /* footer et éléments */
+    /* pied de page formation */
+    .formation-footer-badge {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding-top: 40px;
+    }
+
+    .certif-tag {
+      background: rgba(201,168,76,0.1);
+      padding: 8px 24px;
+      border-radius: 60px;
+      display: inline-block;
+      font-family: 'Special Elite', cursive;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+
+    /* mini menu */
+    .menu-mini {
+      background: #0f0b08;
+      padding: 14px 48px;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .menu-mini a {
+      color: var(--gold);
+      margin: 0 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .menu-mini a:hover {
+      color: var(--cream);
+    }
+
+    /* about section */
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 52px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .about-text-block {
+      flex: 1.3;
+    }
+
+    .about-info-block {
+      flex: 0.8;
+      background: #0f0b08;
+      border-left: 2px solid rgba(201,168,76,0.4);
+      padding-left: 36px;
+    }
+
+    .badge-inline {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      background: rgba(201,168,76,0.1);
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 30px;
+    }
+
+    .about-text-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin: 18px 0 20px;
+      font-weight: 500;
+    }
+
+    .about-text-block p {
+      color: rgba(245,234,214,0.75);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .features-list {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .feature-item {
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    .info-hours {
+      font-family: 'Special Elite', cursive;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-size: 0.8rem;
+    }
+
+    /* footer */
     .footer-site {
       border-top: 1px solid rgba(201,168,76,0.12);
       padding: 32px 48px;
@@ -413,36 +531,23 @@
     .footer-site a {
       color: rgba(201,168,76,0.7);
       text-decoration: none;
+      transition: 0.2s;
     }
 
-    .menu-mini {
-      background: #0f0b08;
-      padding: 12px 48px;
-      text-align: center;
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-    }
-
-    .menu-mini a {
+    .footer-site a:hover {
       color: var(--gold);
-      margin: 0 18px;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      text-transform: uppercase;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 860px) {
       header { padding: 12px 20px; }
       nav { display: none; }
-      .formation-section { padding: 40px 20px; }
-      .modules-grid { grid-template-columns: 1fr; }
+      .formation-section { padding: 45px 20px; }
+      .modules-grid { grid-template-columns: 1fr; gap: 24px; }
+      .about-container { flex-direction: column; }
+      .about-info-block { border-left: none; border-top: 1px solid rgba(201,168,76,0.3); padding-left: 0; padding-top: 28px; margin-top: 10px; }
+      .menu-mini { padding: 12px 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+      .menu-mini a { margin: 0 8px; }
       .footer-site { flex-direction: column; text-align: center; padding: 28px 20px; }
-      .menu-mini { padding: 10px 16px; }
-    }
-
-    hr {
-      border-color: rgba(201,168,76,0.1);
-      margin: 0;
     }
   </style>
 </head>
@@ -459,22 +564,19 @@
 
 <!-- BANNER PRINCIPAL -->
 <div class="banner">
-  <img src="banner.png" alt="Jazz club ambiance" class="banner-img" onerror="this.src='https://placehold.co/1600x1000/1e1915/c9a84c?text=Jazz+Coffee+Lima'">
+  <img src="banner.png" alt="Jazz club ambiance" class="banner-img" onerror="this.src='https://placehold.co/1600x1000/1e1915/c9a84c?text=Jazz+Coffee+Lima+Barista'">
   <div class="ambient"></div>
-  <div class="spots">
-    <div class="spot1"></div>
-    <div class="spot2"></div>
-  </div>
+  <div class="spots"><div class="spot1"></div><div class="spot2"></div></div>
   <div class="banner-vignette"></div>
   <div class="banner-content">
     <h1>Barista Pro 2026</h1>
     <p class="tagline">Formation complète — Take away concept</p>
-    <div style="margin-top: 18px; font-size: 0.8rem; letter-spacing: 0.2rem;">Lima · Surco</div>
+    <div style="margin-top: 18px; font-size: 0.8rem; letter-spacing: 0.2rem; opacity:0.85;">Lima · Surco · Certification</div>
   </div>
   <div class="scroll-hint">↓ 13 modules ↓</div>
 </div>
 
-<!-- PLAYLIST JAZZ (winamp) -->
+<!-- PLAYLIST JAZZ -->
 <div class="playlist-section">
   <div class="playlist-header">
     <div class="eq-bars"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
@@ -502,7 +604,7 @@
   <div class="section-header">
     <div class="badge">Espresso · Mouture · Latte Art · Take away</div>
     <h2>Plan de formation Barista<br>Professionnel 2026</h2>
-    <p>De la graine à la tasse, en passant par la gestion commerciale et l’organisation du coffee shop. <br>Programme complet adapté à votre projet Lima — coffee shop take-away, matcha, armoise et infusions.</p>
+    <p>De la graine à la tasse, en passant par la gestion commerciale et l'organisation du coffee shop. Programme complet adapté à votre projet Lima — coffee shop take-away, matcha, armoise et infusions.</p>
   </div>
 
   <div class="modules-grid">
@@ -517,7 +619,7 @@
     <!-- MODULE 5 -->
     <div class="module-card"><div class="module-header"><div class="module-num">MODULE 05</div><div class="module-title">L'extraction de l'espresso</div></div><div class="module-list"><ul><li>5.1 – Paramètres d'extraction : temps, température, pression</li><li>5.2 – Flow : lecture du débit et de la couleur</li><li>5.3 – Défauts : sous-extraction, sur-extraction</li><li>5.4 – Diagnostic par dégustation</li></ul></div></div>
     <!-- MODULE 6 -->
-    <div class="module-card"><div class="module-header"><div class="module-num">MODULE 06</div><div class="module-title">Le lait et la mousse</div></div><div class="module-list"><ul><li>6.1 – Types de lait (vache, végétaux) comportements</li><li>6.2 – Buse vapeur : utilisation et purge</li><li>6.3 – Montée en température (contrôle manuel)</li><li>6.4 – Incorporation d’air pour micro-mousse onctueuse</li><li>6.5 – Nettoyage immédiat de la buse</li></ul></div></div>
+    <div class="module-card"><div class="module-header"><div class="module-num">MODULE 06</div><div class="module-title">Le lait et la mousse</div></div><div class="module-list"><ul><li>6.1 – Types de lait (vache, végétaux) comportements</li><li>6.2 – Buse vapeur : utilisation et purge</li><li>6.3 – Montée en température (contrôle manuel)</li><li>6.4 – Incorporation d'air pour micro-mousse onctueuse</li><li>6.5 – Nettoyage immédiat de la buse</li></ul></div></div>
     <!-- MODULE 7 -->
     <div class="module-card"><div class="module-header"><div class="module-num">MODULE 07</div><div class="module-title">Latte art</div></div><div class="module-list"><ul><li>7.1 – Bases du versage (free pouring)</li><li>7.2 – Le cœur (heart)</li><li>7.3 – La feuille (rosetta)</li><li>7.4 – La tulipe (tulip)</li><li>7.5 – Topping et drawing (stylets)</li></ul></div></div>
     <!-- MODULE 8 -->
@@ -533,11 +635,70 @@
     <!-- MODULE 13 -->
     <div class="module-card"><div class="module-header"><div class="module-num">MODULE 13</div><div class="module-title">Mise en situation professionnelle</div></div><div class="module-list"><ul><li>13.1 – Service en continu en take-away</li><li>13.2 – Calibration machine et moulin en conditions réelles</li><li>13.3 – Réalisation d'un menu complet (espresso, matcha, infusion armoise, latte art)</li><li>13.4 – Évaluation et correction par le formateur</li></ul></div></div>
   </div>
-  <div style="margin-top: 52px; text-align: center; font-size: 0.8rem; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 32px;">
-    <span style="background: rgba(201,168,76,0.08); padding: 6px 18px; border-radius: 60px;">🎓 Formation intensive – certification interne – focus take-away Lima</span>
+  <div class="formation-footer-badge">
+    <span class="certif-tag">🎓 Formation intensive – certification interne – focus take-away Lima</span>
   </div>
 </div>
 
-<!-- Mini menu rapide + about -->
+<!-- Mini menu rapide -->
 <div id="menu-lia" class="menu-mini">
-  <a href="#">☕ Espres
+  <a href="#">☕ Espresso bar</a>
+  <a href="#">🍵 Matcha Latte</a>
+  <a href="#">🌿 Infusion armoise</a>
+  <a href="#">🥛 Lait végétal</a>
+  <a href="#">🎷 Live jazz week-end</a>
+</div>
+
+<!-- ABOUT section structurée -->
+<div id="about" class="formation-section" style="padding-top: 20px;">
+  <div class="about-container">
+    <div class="about-text-block">
+      <div class="badge-inline">Notre concept</div>
+      <h2>Coffee shop take-away<br>à Lima · Surco</h2>
+      <p>Un espresso parfait, une mousse de lait soyeuse et un service ultra-rapide sans sacrifier l'âme du métier. Spécialisation matcha, armoise et infusions maison. La formation Barista 2026 couvre chaque détail pour ouvrir et gérer votre établissement avec excellence.</p>
+      <div class="features-list">
+        <span class="feature-item">▸ 13 modules professionnels</span>
+        <span class="feature-item">▸ Extraction & Latte art avancé</span>
+        <span class="feature-item">▸ Gestion + coût de revient</span>
+      </div>
+    </div>
+    <div class="about-info-block">
+      <div class="info-hours">Horaires & infos</div>
+      <p style="margin-top: 8px;">Lun – Ven : 7:30 – 19:00<br>Sam : 9:00 – 22:00 (live jazz)<br>Dimanche : 9:00 – 17:00</p>
+      <div style="margin-top: 28px;"><span style="color: var(--gold);">📍</span> Calle Las Camelias 742, Surco<br>Lima 33, Perú</div>
+      <div style="margin-top: 20px;"><span style="color: var(--gold);">📞</span> +51 1 987 654 321</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER avec www.jazzclublima.com -->
+<div class="footer-site">
+  <div><span style="font-family: 'Special Elite'; color: rgba(201,168,76,0.6);">♪ Jazz Club & Coffee</span></div>
+  <p>© 2026 Barista Training Program · Lima · Tous droits réservés</p>
+  <p><a href="https://www.jazzclublima.com" target="_blank" rel="noopener noreferrer">www.jazzclublima.com</a></p>
+</div>
+
+<script>
+  // duplication du ticker pour défilement continu
+  const tickerInner = document.getElementById('ticker');
+  if(tickerInner) {
+    const items = Array.from(tickerInner.children);
+    for(let i=0; i<2; i++) {
+      items.forEach(el => {
+        tickerInner.appendChild(el.cloneNode(true));
+      });
+    }
+  }
+  // now playing dynamique
+  const tracksList = ["Blue in Green · Miles Davis", "So What · Miles Davis", "Take Five · Dave Brubeck", "My Favorite Things · Coltrane", "Song for my Father · Horace Silver", "St. Thomas · Sonny Rollins"];
+  let idx = 0;
+  setInterval(() => {
+    const nowDiv = document.getElementById('nowPlaying');
+    if(nowDiv) {
+      idx = (idx+1) % tracksList.length;
+      nowDiv.innerText = "🎷 " + tracksList[idx];
+    }
+  }, 5800);
+</script>
+</body>
+</html>
